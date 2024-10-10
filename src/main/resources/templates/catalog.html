@@ -5,6 +5,13 @@
     <title>Каталог</title>
 </head>
 <body>
+
+<form action="find_product">
+    Какой товар ищем?
+    <input type="text" name = "s"/>
+    <button type="submit">найти</button>
+</form>
+
 Посмотрите наш ассортимент
 <div th:each="product : ${spisok_produktov}">
     <p>

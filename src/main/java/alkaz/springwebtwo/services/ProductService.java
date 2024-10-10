@@ -35,7 +35,8 @@ public class ProductService {
 
     public Product findFirstByName(String s){
         for (Product p: products)
-            if(p.getName().equals(s))
+            //if(p.getName().equals(s))
+            if (p.getName().equalsIgnoreCase(s))
                 return p;
         return null;
     }

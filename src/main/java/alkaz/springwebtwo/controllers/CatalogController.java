@@ -51,4 +51,14 @@ public class CatalogController {
         return "redirect:/catalog";     //перенаправление заставляет клиента (браузер)
                                     //забыть предыдущий http-запрос и его параметры
     }
+
+    @GetMapping("/find_product")
+    public String findProduct(@RequestParam(name = "s", required = false) String s, Model model){
+        if(s == null || s.isEmpty() || s.isBlank())
+            return "catalog";
+
+        Product product = productService.findFirstByName(s);
+        model.addAttribute("product", product);
+        return "product_info";
+    }
 }

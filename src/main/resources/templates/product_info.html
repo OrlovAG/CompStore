@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Информация о товаре</title>
+</head>
+<body>
+    <div th:if="${product != null and !#strings.isEmpty(product.id)}">
+        Найден товар!
+        <p>id =  <span th:text="${product.id}"/></p>
+        <p>Название: <span th:text="${product.name}"/> </p>
+        <p>цена: <span th:text="${product.cost}"/></p>
+    </div>
+    <div th:if="${product == null or #strings.isEmpty(product.id)}">
+        <p>ничего не найдено</p>
+    </div>
+    <button type="button" onclick="location.href='catalog';">Назаааад</button>
+</body>
+</html>
