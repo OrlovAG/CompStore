@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,5 +27,28 @@ public class CatalogController {
         return "catalog";        //передаем шаблон, который уже будет работать с model
     }
 
+    @GetMapping("/new_product")
+    public String newProduct(){
+        return "new_product";        //передаем шаблон
+    }
 
+    @GetMapping("/save_new_product")
+    public String saveNewProduct(@RequestParam(name = "id")   String strId,
+                                 @RequestParam(name = "name") String name,
+                                 @RequestParam(name = "cost") String strCost, Model model){
+        if(strId != null && name!= null && strCost!=null) {
+            try{
+                int id = Integer.parseInt(strId);
+                double cost = Double.parseDouble(strCost);
+                Product prod = new Product(id, name, cost);
+                productService.addProduct(prod);
+            } catch (Exception e) {
+                System.out.println("все пропало "+e.getMessage());
+            }
+        }
+
+       // return showCatalog(model);
+        return "redirect:/catalog";     //перенаправление заставляет клиента (браузер)
+                                    //забыть предыдущий http-запрос и его параметры
+    }
 }
