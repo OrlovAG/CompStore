@@ -20,9 +20,10 @@ public class ProductService {
                     //после создания бина
     public void fill(){
         try{
-            products.add(new Product(1,"Макарошки", 49.99));
-            products.add(new Product(2,"Тушенка", 250));
-            products.add(new Product(3,"Лук", 35));
+            products.add(new Product(1,"Notebook Acer i5", 60000));
+            products.add(new Product(2,"Macbook", 180000));
+            products.add(new Product(3,"Desktop computer i7", 85000));
+            products.add(new Product(4, "x17",17,1500, "usd"));
         } catch (Exception e) {
             System.out.println("Что-то не так с заполнением списка товаров "+e.getMessage());
         }

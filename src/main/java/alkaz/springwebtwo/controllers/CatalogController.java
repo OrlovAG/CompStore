@@ -35,12 +35,16 @@ public class CatalogController {
     @GetMapping("/save_new_product")
     public String saveNewProduct(@RequestParam(name = "id")   String strId,
                                  @RequestParam(name = "name") String name,
-                                 @RequestParam(name = "cost") String strCost, Model model){
+                                 @RequestParam(name = "diagonal") String diagonal,
+                                 @RequestParam(name = "cost") String strCost,
+                                 @RequestParam(name = "currency") String currency,
+                                         Model model)                                {
         if(strId != null && name!= null && strCost!=null) {
             try{
                 int id = Integer.parseInt(strId);
                 double cost = Double.parseDouble(strCost);
-                Product prod = new Product(id, name, cost);
+                double d = Double.parseDouble(diagonal);
+                Product prod = new Product(id, name, d, cost, currency);
                 productService.addProduct(prod);
             } catch (Exception e) {
                 System.out.println("все пропало "+e.getMessage());
